@@ -1,0 +1,76 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="pt-3 pb-2 border-buttom">
+    <h2>Admin Component</h2>
+  </div>
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="row g-0">
+          <div class="col-lg-12 col-md-12">
+            <div class="card">
+              <div class="card-header card-header-warning">
+                <h4 class="card-title">Detalle del Producto</h4>
+                <p class="card-category">Dentro del sistema</p>
+              </div>
+              <div class="card-body table-responsive" *ngIf="cargaFinalizada; else spinner">
+                <div class="text-center card2" *ngFor="let objProduct of arregloProducto">
+                  <div class="card2-img">
+                    <img
+                      class="card2-img2"
+                      [src]="'data:image/png;base64,' + objProduct.base64Producto"
+                      alt="Menu Corralito Imagen"
+                    />
+                  </div>
+                  <div class="card2-info">
+                    <p class="text2-title">{{ objProduct.nombreProducto }}</p>
+                    <p class="text2-body">{{ objProduct.detalleProducto }}</p>
+                  </div>
+                  <div class="card2-footer">
+                    <span class="text2-title"
+                      >${{ objProduct.valorProducto }}</span
+                    >
+                    <div class="card2-button" data-toggle="tooltip" data-placement="top" title="Editar Producto" (click)="editProduct()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                      </svg>
+                    </div>
+                      <div class="card2-button" data-toggle="tooltip" data-placement="top" title="Editar Foto" (click)="editFoto()">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-image-fill" viewBox="0 0 16 16">
+                        <path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+                      </svg>
+                    </div>
+                   
+                      
+                  </div>
+                  <div class="mt-2 d-flex justify-content-evenly">
+                    <button
+                      class="btn btn-close-white"
+                      type="button"
+                      (click)="volver()"
+                    >
+                      Regresar
+                    </button>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<ng-template #spinner>
+  <div class="col-md text-center">
+    <button class="btn btn-primary" type="button" disabled>
+      <span
+        class="spinner-border spinner-border-sm"
+        Producte="status"
+        aria-hidden="true"
+      ></span>
+      Loading...
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,72 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="pt-3 pb-2 border-buttom">
+    <h2>Este es el componente rol-crear</h2>
+  </div>
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="row g-0">
+          <div class="col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title">Registre</h4>
+                <p class="card-category">El nuevo Role</p>
+              </div>
+              <div class="card-body table-responsive">
+                <form
+                  #frmNewRol="ngForm"
+                  (submit)="frmNewRol.form.valid && creacion(frmNewRol)"
+                  novalidate
+                >
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label"
+                      >Nuevo Rol</label
+                    >
+                    <input
+                      id="rolName"
+                      name="rolName"
+                      type="text"
+                      class="form-control"
+                      #rolName="ngModel"
+                      [(ngModel)]="objRol.nombreRol"
+                      [ngClass]="{
+                        'is-valid': frmNewRol.submitted && rolName.invalid
+                      }"
+                      required
+                    />
+                    <fieldset>
+                      <label for="rolNumber" class="label">Estado Rol</label>
+
+                      <select
+                        class="form-control"
+                        data-size="4"
+                        id="rolNumber"
+                        name="rolNumber"
+                        type="number"
+                        #rolNumber="ngModel"
+                        [(ngModel)]="objRol.estadoRol"
+                        [ngClass]="{
+                          'is-valid': frmNewRol.submitted && rolNumber.invalid
+                        }"
+                        required
+                      >
+                        <option
+                          [value]="roles.estadoRol"
+                          *ngFor="let roles of roles"
+                        >
+                          {{ roles.nombreRol }}
+                        </option>
+                      </select>
+                    </fieldset>
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Crear</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,122 @@
+.card {
+    width: 290px;
+    height: 354px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    padding: 1.8rem;
+    border: 2px solid #c3c6ce;
+    transition: 0.5s ease-out;
+    overflow: visible;
+    margin-bottom: 2rem;
+}
+
+.card-details {
+    color: black;
+    height: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.card-button {
+    transform: translate(-50%, 125%);
+    width: 60%;
+    border-radius: 1rem;
+    border: none;
+    background-color: #008bf8;
+    color: #fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+}
+
+.text-body {
+    color: rgb(134, 134, 134);
+}
+
+/*Text*/
+.text-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/*Hover*/
+.card:hover {
+    border-color: #008bf8;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .card-button {
+    transform: translate(-50%, 50%);
+    opacity: 1;
+}
+
+.img-details{
+    max-width: 100%;
+    height: 200px;
+}
+
+.full-screen {
+    height: 100vh;
+    width: 100vw;
+    position: fixed; /* Para mantener el spinner visible en toda la ventana */
+    top: 0;
+    left: 0;
+  }
+  
+  /* Centrar el contenido */
+  .centrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Estilos del spinner */
+  .custom-loader {
+    align-self: center;
+    width: 70px;
+    height: 70px;
+    background: #ffa600;
+    border-radius: 50px;
+    -webkit-mask: radial-gradient(circle 31px at 50% calc(100% + 13px), #000 95%, #0000) top 4px left 50%,
+      radial-gradient(circle 31px, #000 95%, #0000) center,
+      radial-gradient(circle 31px at 50% -13px, #000 95%, #0000) bottom 4px left 50%,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    -webkit-mask-repeat: no-repeat;
+    animation: cu10 1.5s infinite;
+  }
+  
+  @keyframes cu10 {
+    0% {
+      -webkit-mask-size: 0 18px, 0 18px, 0 18px, auto;
+    }
+  
+    16.67% {
+      -webkit-mask-size: 100% 18px, 0 18px, 0 18px, auto;
+    }
+  
+    33.33% {
+      -webkit-mask-size: 100% 18px, 100% 18px, 0 18px, auto;
+    }
+  
+    50% {
+      -webkit-mask-size: 100% 18px, 100% 18px, 100% 18px, auto;
+    }
+  
+    66.67% {
+      -webkit-mask-size: 0 18px, 100% 18px, 100% 18px, auto;
+    }
+  
+    83.33% {
+      -webkit-mask-size: 0 18px, 0 18px, 100% 18px, auto;
+    }
+  
+    100% {
+      -webkit-mask-size: 0 18px, 0 18px, 0 18px, auto;
+    }
+  }

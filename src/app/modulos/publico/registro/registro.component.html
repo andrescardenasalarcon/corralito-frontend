@@ -1,0 +1,161 @@
+<div style="padding-top: 80px">
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-md-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-md-6 gradient-custom-2">
+              <div class="text-white py-4 mx-md-4">
+                <div class="text-white" style="color: black">
+                  <h1>Nuevo usuario</h1>
+                </div>
+                <p>
+                  <img src="assets/images/crearUsuario.png" alt="Login" />
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card-body">
+                <div class="text-center">
+                  <a [routerLink]="['/land/home']"
+                    ><img src="./assets/images/burguer_login.png" alt="logo"
+                  /></a>
+                  <h4 class="mb-2 pb-1">Haz parte de miCorralito</h4>
+                </div>
+
+                <div class="container">
+                  <form
+                    #frmLogin="ngForm"
+                    class="col-md-12"
+                    (submit)="frmLogin.form.valid && operacion(frmLogin)"
+                    novalidate
+                  >
+                    <div class="form-outline mb-1">
+                      <div class="row">
+                        <div class="col">
+                          <input
+                            type="text"
+                            id="nom"
+                            name="nom"
+                            [(ngModel)]="objUsuario.nombresUsuario"
+                            [ngClass]="{
+                              'is-invalid': frmLogin.submitted && nom.invalid
+                            }"
+                            #nom="ngModel"
+                            required
+                            class="form-control form-control-sm"
+                          />
+                          <label class="form-label text-warning" for="nom"
+                            ><small>&nbsp;Nombre:</small></label
+                          >
+                        </div>
+                        <div class="col">
+                          <input
+                            type="text"
+                            id="ape"
+                            name="ape"
+                            [(ngModel)]="objUsuario.apellidosUsuario"
+                            #ape="ngModel"
+                            [ngClass]="{
+                              'is-invalid': frmLogin.submitted && ape.invalid
+                            }"
+                            required
+                            class="form-control form-control-sm"
+                          />
+                          <label class="form-label text-warning" for="ape"
+                            ><small>&nbsp;Apellido:</small></label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-outline mb-1">
+                      <input
+                        type="email"
+                        id="usu"
+                        name="usu"
+                        [(ngModel)]="objUsuario.correoAcceso"
+                        [ngClass]="{
+                          'is-invalid': frmLogin.submitted && usu.invalid
+                        }"
+                        #usu="ngModel"
+                        required
+                        class="form-control form-control-sm"
+                        placeholder="Correo electrónico"
+                        [pattern]="patronCorreo"
+                      />
+                      <label class="form-label text-warning" for="usu"
+                        ><small>&nbsp;Usuario:</small></label
+                      >
+                    </div>
+
+                    <div class="form-outline mb-1">
+                      <input
+                        type="password"
+                        id="cla"
+                        name="cla"
+                        [(ngModel)]="objUsuario.claveAcceso"
+                        #cla="ngModel"
+                        [ngClass]="{
+                          'is-invalid': frmLogin.submitted && cla.invalid
+                        }"
+                        required
+                        class="form-control form-control-sm"
+                      />
+                      <label class="form-label text-warning" for="cla"
+                        ><small>&nbsp;Contraseña:</small></label
+                      >
+                    </div>
+
+                    <div class="form-outline mb-1">
+                      <input
+                        type="password"
+                        id="recla"
+                        name="recla"
+                        [(ngModel)]="objUsuario.reClaveAcceso"
+                        #recla="ngModel"
+                        [ngClass]="{
+                          'is-invalid': frmLogin.submitted && recla.invalid
+                        }"
+                        required
+                        class="form-control form-control-sm"
+                        [pattern]="objUsuario.claveAcceso"
+                      />
+                      <label class="form-label text-warning" for="recla"
+                        ><small>&nbsp;Reconfirmar contraseña:</small></label
+                      >
+                    </div>
+
+                    <div class="text-center mb-1">
+                      <div class="d-grid gap-2">
+                        <button
+                          class="btn btn-primary gradient-custom-2"
+                          type="submit"
+                        >
+                          Crear cuenta
+                        </button>
+                      </div>
+                    </div>
+
+                    <div
+                      class="d-flex align-items-center justify-content-center py-2"
+                    >
+                      <p class="mb-0 me-2">¿Ya tienes cuenta?</p>
+                      <a
+                        [routerLink]="['/land/login']"
+                        class="btn btn-outline-primary btn-sm"
+                      >
+                        Inicia sesión
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

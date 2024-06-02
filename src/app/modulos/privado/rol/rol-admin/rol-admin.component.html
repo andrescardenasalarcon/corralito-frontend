@@ -1,0 +1,63 @@
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="pt-3 pb-2 border-buttom">
+    <h2>Este es el componente admin</h2>
+  </div>
+  <div class="container">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="row g-0" *ngIf="cargaFinalizada; else spinner">
+          <div class="col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header card-header-warning">
+                <h4 class="card-title">Lista de Roles</h4>
+                <p class="card-category">
+                   Dentro del sistema
+                </p>
+              </div>
+              <div class="card-body table-responsive">
+                <table class="table table-hover">
+                  <thead class="text-warning">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Sate</th>
+                    <th>CRUD</th>
+                  </thead>
+                  <tbody>
+                    <tr  *ngFor="let objRol of arregloRoles; from: Rol;let indice=index">
+                      <td>{{indice+1}}</td>
+                      <td>{{ objRol.nombreRol }}</td>
+                      <td *ngIf="objRol.estadoRol == '1'; ngIfElse elseBlock">
+                        <span class="badge rounded-pill badge-success">Active</span>
+                      </td>
+                      <td #elseBlock *ngIf='objRol.estadoRol == "2"'>
+                        <span class="badge rounded-pill badge-danger">Inactivo</span>
+                      </td>
+                      
+                      <td>
+                        <i class="fa-solid fa-trash-can fa-sm" style="color: #990000" ></i> &nbsp;
+                        <i class="fa-regular fa-pen-to-square" style="color: #006600;"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<ng-template #spinner>
+  <div class="col-md text-center">
+    <button class="btn btn-primary" type="button" disabled>
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Loading...
+    </button>
+  </div>
+</ng-template>

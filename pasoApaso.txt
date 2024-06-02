@@ -1,0 +1,245 @@
+#Instlacion de librerias
+    ng add @ng-bootstrap/ng-bootstrap
+    npm i bootstrap
+    npm i bootstrap-icons
+	npm i @fortawesome/fontawesome-free
+	npm i ngx-bootstrap
+	npm i ngx-toastr
+    npm i ngx-pagination
+    npm i js-sha512
+    npm i @popperjs/core
+    npm install jquery @types/jquery --save
+
+
+#Configurar el Angular.Json
+    "styles": [
+        "src/styles.css",
+        "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+        "node_modules/@fortawesome/fontawesome-free/css/all.css",
+        "node_modules/ngx-toastr/toastr.css"
+ "scripts": [
+            "node_modules/bootstrap/dist/js/bootstrap.min.js",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/@popperjs/core/dist/umd/popper-base.min.js",
+	    "node_modules/jquery/dist/jquery.min.js",
+
+#Configuar puertos
+#Configurar el archivo app.module.ts --Agregar estas libs.
+    import {ToastrModule} from 'ngx-toastr';
+    import {ModalModule} from 'ngx-bootstrap/modal';
+    import {FormsModule} from '@angular/forms';
+    import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+    import { NgxPaginationModule } from 'ngx-pagination';
+
+    imports: [
+        FormsModule,
+        ModalModule.forRoot(),
+        ToastrModule.forRoot(),
+        NgxPaginationModule,
+        BrowserAnimationsModule
+    ],
+
+#Creacion de modulos
+    ng g m modulos/contenedor                               --> m de modulo
+
+    ng g c modulos/contenedor/land/cabeceraLand             --> c de componenete
+    ng g c modulos/contenedor/land/contenedorLand             --> c de componenete
+    ng g c modulos/contenedor/dash/cabeceraDash
+    ng g c modulos/contenedor/dash/contenedorDash
+
+    ng g m modulos/publico
+    ng g m modulos/publico/publico-routing --flat --module=publico
+
+    ng g c modulos/publico/error
+    ng g c modulos/publico/menu
+    ng g c modulos/publico/restaurante
+    ng g c modulos/publico/evento
+    ng g c modulos/publico/inicio
+    ng g c modulos/publico/acerca
+    ng g c modulos/publico/acceso
+    ng g c modulos/publico/ciudad
+    ng g c modulos/publico/producto
+
+    ng g m modulos/privado/rol
+    ng g m modulos/privado/rol/rol-routing --flat --module=rol
+    
+    ng g c modulos/privado/rol/rolCrear
+    ng g c modulos/privado/rol/rolEditar
+    ng g c modulos/privado/rol/rolAdmin
+
+    ng g m modulos/privado/usuario
+    ng g m modulos/privado/usuario/usuario-routing --flat --module=usuario
+
+    ng g c modulos/privado/usuario/usuarioCrear
+    ng g c modulos/privado/usuario/usuarioEditar
+    ng g c modulos/privado/usuario/usuarioAdmin
+
+    ng g m modulos/privado/restaurante
+    ng g m modulos/privado/restaurante/restaurante-routing --flat --module=restaurante
+
+    ng g c modulos/privado/restaurante/restauranteCrear
+    ng g c modulos/privado/restaurante/restauranteEditar
+    ng g c modulos/privado/restaurante/restauranteAdmin
+
+    ng g m modulos/privado/control
+    ng g m modulos/privado/control/control-routing --flat --module=control
+
+    ng g c modulos/privado/control/errorInterno
+    ng g c modulos/privado/control/inicioInterno
+
+#Vamos a crear las utilidades
+    ng g enum utilidades/mensajes/toast --type=func
+    ng g enum utilidades/rutas/landRutas
+    ng g enum utilidades/rutas/dashRutas
+
+    -Crear el archivo class toastr
+    
+#Configurar la plantilla de inicio app.component.html
+    <router-outlet></router-outlet>  //Para manejar hipervinculos 
+
+#Configurar el contendeor src\app\modulos\contenedor\contenedor.module.ts
+    Nota_Importante: Colocar este import si necesitamos rutas
+        import { RouterModule } from '@angular/router';
+
+    imports: [ CommonModule, RouterModule ],
+    exports: [CabeceraLandComponent, ContenedorLandComponent],
+
+#Vamos a configurar el modulo: src\app\app.module.ts
+    import { ContenedorModule } from './modulos/contenedor/contenedor.module';
+
+    en el imports colocar: ContenedorModule
+
+#Ahora vamos al ruteo del contenedor src\app\modulos\contenedor\land\contenedor-land\contenedor-land.component.html
+    <router-outlet></router-outlet>
+
+#Ahora el ruteo basico en src\app\modulos\publico\publico-routing.module.ts
+
+#Ahora, pal modulo publico: src\app\modulos\publico\publico.module.ts
+    FormsModule,
+    ToastrModule.forRoot(),
+    ContenedorModule
+
+#********************************
+
+#Las rutas padres se deben cargar
+#src\app\utilidades\rutas\land-rutas.ts
+
+#El ruteo final src\app\app-routing.module.ts: 
+    {path: '', component: ContenedorLandComponent, children: RUTAS_LANDSCAPE},
+
+    {path: '**', component: ErrorComponent}
+
+#********************************
+#Copiar las plantillas de las carpetas recurosos
+#********************************
+
+#Habilitar Http en angular
+    En: src\app\app.module.ts
+    import {HttpClientModule} from '@angular/common/http';
+    imports: [
+    HttpClientModule,
+    ...
+    ]
+#********************************
+#Crear una carpeta observadores
+# Dentro un archivo: src\app\utilidades\observadores\tipo-any.ts
+# Realizar el respectivo codigo de observado
+
+#********************************
+#Configuracion de los endPoint
+    #Crear una carpeta dominios
+    #Dentro un archivo: src\app\utilidades\dominios\uris.ts
+    # Realizar el correspondiente codigo de apiBack
+
+#********************************
+#Crear el modelo de ciudad
+    #Crear el archivo: ng g class modelos/Ciudad --skip-tests=true
+    Pegar el modelo de ciudad que sale del backend
+
+#********************************
+#Crear e primer servicio
+    #Crear el archivo: ng g s servicios/ciudad --skip-tests=true
+    #Realizar estas importaciones
+    import { Observable } from 'rxjs';
+    import { Ciudad } from '../modelos/Ciudad'; --> ó correspondiente al servicio a trabajar
+    import { HttpClient } from '@angular/common/http';
+    import * as miUrl from '../utilidades/dominios/uris';
+
+#********************************
+#Ahora vamos a usar el servicio en el componente ciudades
+    En la carpeta: src\app\modulos\publico\ciudad\ciudad.component.ts
+
+#********************************
+#Colocar la vista de inicio de sesion
+
+#********************************
+#Los modelos para el inicio de sesión
+    ng g class modelos/Inicio-sesion  --skip-tests=true
+    ng g class modelos/Respuesta-Inicio-sesion  --skip-tests=true
+
+#********************************
+#El servicio para consumir el Inicio de sesión
+    ng g s servicios/Inicio-sesion --skip-tests=true
+
+#********************************
+
+#Colocar la vista de Registro de sesion
+#********************************
+#Los modelos para el Registro de sesión
+    ng g class modelos/registro-sesion  --skip-tests=true
+
+#********************************
+#El servicio para consumir el Registro de sesión
+    ng g s servicios/registro-sesion --skip-tests=true
+
+#********************************
+#Iniciando con el dash
+    
+#********************************
+#Colocamos plantilla y estilos
+#********************************
+#Colocamos la cabecera
+#********************************
+#Colocamos el conponente de inicio
+#********************************
+#Vamos a configurrar el componenetermin contenedor dash
+#********************************
+#Hagamos un ej interno con roles
+    Dirigase a rol-admin-privado.html
+#Hagamos un ej crear rol
+    Dirigase a rol-crear-privado.html
+#Vamos a configurar el ruteo de Control-routing-module
+    src\app\modulos\privado\control\control-routing.module.ts
+    Nota: No olvidar siempre exportar las rutas!!!
+#********************************
+#Ahora vamos al ruteo del dash
+    src\app\utilidades\rutas\dash-rutas.ts
+    src\app\app-routing.module.ts
+    src\app\modulos\privado\rol\rol-routing.module.ts
+
+#********************************
+# Creammos una modelo-clase para lo de la seguridad
+    ng g class modelos/miSesion
+
+#********************************
+Instalamos esta libreria de jwt
+    npm i jwt-decode
+    programar en src\app\servicios\inicio-sesion.service.ts 
+
+#********************************
+Creamos el archivo guard o guardina 
+    ng g guard vigilante --skip-tests=true
+
+#********************************
+Creamos el interceptor
+    ng g interceptor token --skip-tests=true
+
+#********************************
+Agregamos el Guard en src\app\app-routing.module.ts
+    Lineas de codigo al final del private canActivate
+#********************************
+En el app module agregamos en provider el token Interseptor
+    src\app\app.module.ts
+
+

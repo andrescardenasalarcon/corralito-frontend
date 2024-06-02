@@ -25,9 +25,19 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+	            "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
+	            "node_modules/ngx-toastr/toastr.css",
               "src/styles.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+	            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper-base.min.js"
+              
+            ]
           },
           "configurations": {
             "production": {
@@ -60,10 +70,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "proyecto012:build:production"
+              "browserTarget": "proyecto012:build:production",
+              "port":8088
             },
             "development": {
-              "browserTarget": "proyecto012:build:development"
+              "browserTarget": "proyecto012:build:development",
+              "port":8089
             }
           },
           "defaultConfiguration": "development"
@@ -94,5 +106,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "da1677f8-f8b8-44f0-80ae-8996a3b97430"
   }
 }

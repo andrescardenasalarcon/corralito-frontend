@@ -1,0 +1,47 @@
+<app-cabecera-land></app-cabecera-land>
+
+<div id="work-area">
+  <div class="container page-wrapper">
+    <div class="page-inner">
+      <div class="row" *ngIf="cargaFinalizada; else spinner">
+        <div class="col" *ngFor="let objPro of arregloProductos">
+          <div class="el-wrapper">
+            <div class="box-up">
+              <img class="img" [src]="'data:image/png;base64,' + objPro.base64Producto" alt="Menu Corralito Imagen" />
+              <div class="img-info">
+                <div class="info-inner">
+                  <span class="p-name">{{ objPro.nombreProducto }}</span>
+                  <span class="p-company">Mi Corralito</span>
+                </div>
+                <div class="a-size">{{ objPro.detalleProducto }}</div>
+              </div>
+            </div>
+
+            <div class="box-down">
+              <div class="h-bg">
+                <div class="h-bg-inner"></div>
+              </div>
+
+              <a class="cart" href="#">
+                <span class="price">${{ objPro.valorProducto }}</span>
+                <span class="add-to-cart">
+                  <span class="txt">Add in cart</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+<!-- PLANTILLAS INICIO -->
+
+<ng-template #spinner>
+  <div class="centrado full-screen">
+    <div class="custom-loader"></div>
+  </div>
+</ng-template>
+
+<!-- PLANTILLAS FIN -->

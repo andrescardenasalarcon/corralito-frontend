@@ -1,0 +1,52 @@
+<app-cabecera-land></app-cabecera-land>
+
+<div id="work-area">
+  <!-- ======= Gallery Section ======= -->
+  <section id="gallery" class="gallery">
+    <div class="container-fluid">
+      <div class="ag-format-container">
+        <div class="ag-courses_box" *ngIf="cargaFinalizada; else spinner">
+
+          <div class="ag-courses_item"  *ngFor="let objRes of arregloRestaurantes;">
+            <a href="#" class="ag-courses-item_link">
+              <div class="ag-courses-item_bg"></div>
+              <div class="ag-courses-item_title">
+                {{objRes.nombreRestaurante}}
+              </div>
+              <div class="ag-courses-item_date-box">
+                Horario:
+                <br>  
+                <span class="ag-courses-item_date">
+                  {{objRes.horarioRestaurante}}
+                </span>
+              </div>
+              <div class="ag-courses-item_address_box">
+              <span><i>{{objRes.direccionRestaurante}}</i></span>
+              <div class="text-center">{{objRes.codCiudad.nombreCiudad}}</div>
+
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Gallery Section -->
+</div>
+
+<!-- PLANTILLAS INICIO -->
+
+<ng-template #spinner>
+  <div class="col-md text-center">
+    <button class="btn btn-primary" type="button" disabled>
+      <span
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+      Loading...
+    </button>
+  </div>
+</ng-template>
+
+<!-- PLANTILLAS FIN -->

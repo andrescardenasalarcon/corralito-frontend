@@ -1,0 +1,35 @@
+<header
+  class="navbar navbar-dark bg-warning sticky-top flex-md-nowrap p-0 shadow"
+>
+  <div class="pt-1">
+    <h3>
+      <img
+        src="./assets/images/burguer_login.png"
+        alt=""
+        style="width: 60px; height: auto"
+      />
+      <a
+        class="col-md-3 col-lg-2 me-0 px-2 fs-4 text-black"
+        [routerLink]="['/private/dash']"
+        >{{objMiSesion.correoMiSesion}}</a
+      >
+    </h3>
+  </div>
+  <button
+    class="navbar-toggler position-absolute d-md-none collapsed bg-danger"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#sidebarMenu"
+    aria-controls="sidebarMenu"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-nav">
+    <div class="nav-item">
+      <a class="nav-link px-3 text-black" (click)="sesion.salir()" style="cursor: pointer;">Cerrar sesión</a>
+    </div>
+  </div>
+</header>
